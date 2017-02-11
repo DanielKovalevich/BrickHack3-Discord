@@ -17,7 +17,7 @@ public class FactoryMaker {
 		
 			case "translate":{
 				
-				f= new TranslationFactory();
+				f = new TranslationFactory();
 			}
 			
 			default:
