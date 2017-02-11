@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class Configurations {
 	private Properties configManager = null;
-	private String configFilePath = "/";
+	private String configFilePath = "C:\\Users\\dkova\\Desktop\\config.conf";
 	public Configurations() {
 		this.configManager = new Properties();
 		File configFile = new File(configFilePath);
@@ -47,6 +47,7 @@ public class Configurations {
 	
 	private void createEmptyConfigFile() throws IOException{
 		configManager.setProperty("Discord_Bot_API_Key", "Value needed");
+		configManager.setProperty("Translator_Key", "Value needed");
 		
 		File configFile = new File(configFilePath);
 		FileWriter writer = new FileWriter(configFile);
