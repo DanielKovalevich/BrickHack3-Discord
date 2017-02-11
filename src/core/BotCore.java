@@ -9,14 +9,16 @@ import net.dv8tion.jda.core.exceptions.RateLimitedException;
 
 public class BotCore {
 	
+	private Configurations config = null;
 	private JDA jda;
 	
 	public BotCore() {
+		this.config = new Configurations();
 		
 		//Create the JDA instance
 		this.createInstance();
 		this.attachCallbacks();
-
+		
 	}
 	
 	private void createInstance()
@@ -25,7 +27,7 @@ public class BotCore {
 
 		
 			this.jda = new JDABuilder(AccountType.BOT)
-					.setToken("BOT TOKEN")
+					.setToken(config.getPropertyValue("Discord_Bot_API_Key"))
 					.buildBlocking();
 		} catch (IllegalArgumentException | RateLimitedException e) {
 		
