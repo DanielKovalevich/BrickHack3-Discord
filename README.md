@@ -11,6 +11,13 @@ You may try to communicate through chat because you don't speak those languages,
 
 *Omniclad* is designed to integrate the translating straight into Discord, whether for use between gamers, or between users and tech support.
 
+@startuml;
+actor Valeriy;
+actor Carl;
+Valeriy -> Carl: Иди сюда!;
+Note right of Carl: Carl translates, time wasted, game lost;
+@enduml
+)
 
 
 ```sequence
