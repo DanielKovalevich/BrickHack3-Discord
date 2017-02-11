@@ -21,13 +21,10 @@ public class CommandListener extends ListenerAdapter {
 			return;
 		}
 		
-		
-		//contents = contents.substring(1,  contents.length());
-		
 		//	
 		//	This removes the ! then gets the first word from the string
 		//
-		fact = contents.replaceFirst("!", "");
+		fact = contents.substring(1,  contents.length());
 		fact = fact.split("\\s+")[0];
 		this.factory = FactoryMaker.getFactory(fact);
 		
