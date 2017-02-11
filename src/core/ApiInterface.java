@@ -53,9 +53,12 @@ public class ApiInterface {
 		
 	}
 
-	public JsonElement putStringIntoJson(Object informationObject) {
+	//Test
+	public void putStringIntoJson(Object informationObject) {
 		
-		
+		Gson jsonWriter = new Gson();
+		String jsonObject = jsonWriter.toJson(informationObject);
+		System.out.println(jsonObject);
 		
 	}
 }
