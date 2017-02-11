@@ -42,7 +42,7 @@ public class CommandListener extends ListenerAdapter {
 			//	we get the second substring after we split where there are spaces for the command	
 			//
 			String cmd = contents.split("\\s+")[1];
-			CommandINF command = this.factory.getCommand(cmd);
+			CommandABS command = this.factory.getCommand(cmd);
 			command.execute(event);
 			
 			//Handle if the command was not found
