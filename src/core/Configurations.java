@@ -9,6 +9,8 @@ import java.util.Properties;
 
 public class Configurations {
 	private Properties configManager = null;
+	// The config file path is not set in stone
+	// Needs to be fixed for the linux server
 	private String configFilePath = "C:\\Users\\dkova\\Desktop\\config.conf";
 	public Configurations() {
 		this.configManager = new Properties();
@@ -48,6 +50,9 @@ public class Configurations {
 	private void createEmptyConfigFile() throws IOException{
 		configManager.setProperty("Discord_Bot_API_Key", "Value needed");
 		configManager.setProperty("Translator_Key", "Value needed");
+		configManager.setProperty("Allow_Adult", "true");
+		configManager.setProperty("Allow_Racy", "true");
+		// New modules with API keys will go here
 		
 		File configFile = new File(configFilePath);
 		FileWriter writer = new FileWriter(configFile);
