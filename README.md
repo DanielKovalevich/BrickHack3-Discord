@@ -11,6 +11,7 @@ You may try to communicate through chat because you don't speak those languages,
 
 *Omniclad* is designed to integrate the translating straight into Discord, whether for use between gamers, or between users and tech support.
 
+![Alt text](https://g.gravizo.com/g?
 @startuml;
 actor Valeriy;
 actor Carl;
@@ -20,22 +21,26 @@ Note right of Carl: Carl translates, time wasted, game lost;
 )
 
 
-```sequence
-Valeriy (in Russia)->Carl: Иди сюда!
-Note right of Carl: Carl translates, wasting time; game is lost
-```
-
-
 ```
 With *Omniclad*, the situation would go more like this:
 ```
-```sequence
-Valeriy (in Russia)->Chat: Иди сюда!
-Chat->Carl: Come here! 
-Note right of Carl: Carl gets the message, helps Valeriy, wins game 
-Carl-->Chat: We won!
-Chat-->Valeriy (in Russia): Мы победили!
-```
+
+
+![Alt text](https://g.gravizo.com/g?
+@startuml;
+actor Valeriy;
+participant "Chat" as A;
+actor Carl;
+activate A;
+Valeriy -> A: Иди сюда!;
+A -> Carl: Come here!;
+Note right of Carl: Carl gets message, helps Valeriy, wins game;
+A <- Carl: We won!; 
+A -> Valeriy: Мы победили!;
+deactivate A;
+@enduml
+)
+
 
 
 > Written with [StackEdit](https://stackedit.io/).
