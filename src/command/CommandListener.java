@@ -7,7 +7,7 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class CommandListener extends ListenerAdapter {
 
-	private CommandFactory factory = null;
+	private AbstractFactory factory = null;
 	
 	@Override public void onMessageReceived(MessageReceivedEvent event) {
 		
@@ -20,17 +20,22 @@ public class CommandListener extends ListenerAdapter {
 			return;
 		}
 		
-		this.factory = CommandFactory.getInstance();
+		
 		contents = contents.substring(1,  contents.length());
+		this.factory = FactoryMaker.getFactory(contents);
+		
+		//
+		//	here we need to set the contents to actually hold what the rest of the contents are so there
+		//	is going to be some code here.
+		//
 		
 		try {
 			
 			//
 			//	This passes the content of the command to the factory
 			//	so that it can create the correct command dynamically. 
-			//	
-			this.factory.createNewCommand(contents);
-			CommandINF command = this.factory.getCurrentCommand();
+			//
+			CommandINF command = this.factory.getTranslation(contents);
 			command.execute(event);
 			
 			//Handle if the command was not found
