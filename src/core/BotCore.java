@@ -2,6 +2,7 @@ package core;
 
 import javax.security.auth.login.LoginException;
 
+import contentmoderation.ContentModerationCore;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -52,6 +53,7 @@ public class BotCore {
 	private void attachCallbacks() {
 		
 		//this.jda.addEventListener(new CommandListener());
+		this.jda.addEventListener(new ContentModerationCore());
 	}
 	
 	
