@@ -5,6 +5,11 @@ public class CommandFactory {
 	private static CommandFactory instance = null;
 	private CommandINF cmd;
 	
+	//
+	//	I made this class a singleton because we are probably going to have multiple instances
+	//	and or types of this factory. We may end up leaving the singleton implementation up
+	//	to the classes that inherit this.
+	//
 	public static CommandFactory getInstance() {
 		if (CommandFactory.instance == null) {
 			CommandFactory.instance = new CommandFactory();
@@ -27,6 +32,10 @@ public class CommandFactory {
 			case "SomeCommandName2": {
 				cmd = null;
 				break;
+			}
+			
+			default:{
+				//	Throw the commandnotfound here.
 			}
 		
 		}

@@ -25,6 +25,10 @@ public class CommandListener extends ListenerAdapter {
 		
 		try {
 			
+			//
+			//	This passes the content of the command to the factory
+			//	so that it can create the correct command dynamically. 
+			//	
 			this.factory.createNewCommand(contents);
 			CommandINF command = this.factory.getCurrentCommand();
 			command.execute(event);
