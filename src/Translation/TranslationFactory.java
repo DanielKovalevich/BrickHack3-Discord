@@ -1,12 +1,12 @@
 package Translation;
 
 import command.AbstractFactory;
+import command.CommandINF;
 
 public class TranslationFactory extends AbstractFactory {
-
+	
 	@Override
-	public TranslationCommand getTranslation(String s) {
-		
+	public CommandINF getCommand(String s) {
 		TranslationCommand cmd = null;
 		
 		//
@@ -15,7 +15,5 @@ public class TranslationFactory extends AbstractFactory {
 		
 		return cmd;
 	}
-	
-	
 	
 }

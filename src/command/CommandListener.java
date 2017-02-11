@@ -35,7 +35,7 @@ public class CommandListener extends ListenerAdapter {
 			//	This passes the content of the command to the factory
 			//	so that it can create the correct command dynamically. 
 			//
-			CommandINF command = this.factory.getTranslation(contents);
+			CommandINF command = this.factory.getCommand(contents);
 			command.execute(event);
 			
 			//Handle if the command was not found
