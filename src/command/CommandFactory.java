@@ -1,5 +1,7 @@
 package command;
 
+import exceptions.CommandNotFoundException;
+
 public class CommandFactory {
 	
 	private static CommandFactory instance = null;
@@ -18,7 +20,7 @@ public class CommandFactory {
 		return CommandFactory.instance;
 	}
 	
-	public void createNewCommand(String s){
+	public void createNewCommand(String s) throws CommandNotFoundException{
 		
 		switch(s){
 		
@@ -36,6 +38,7 @@ public class CommandFactory {
 			
 			default:{
 				//	Throw the commandnotfound here.
+				throw new CommandNotFoundException();
 			}
 		
 		}

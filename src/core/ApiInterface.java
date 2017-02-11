@@ -2,10 +2,13 @@ package core;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.StringWriter;
 import java.net.URL;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonWriter;
 
 import exceptions.JsonContentNotFound;
 
@@ -50,4 +53,12 @@ public class ApiInterface {
 		
 	}
 
+	//Test
+	public void putStringIntoJson(Object informationObject) {
+		
+		Gson jsonWriter = new Gson();
+		String jsonObject = jsonWriter.toJson(informationObject);
+		System.out.println(jsonObject);
+		
+	}
 }
