@@ -52,6 +52,7 @@ public class Configurations {
 		configManager.setProperty("Translator_Key", "Value needed");
 		configManager.setProperty("Allow_Adult", "true");
 		configManager.setProperty("Allow_Racy", "true");
+		configManager.setProperty("Moderation_API_key", "Value needed");
 		// New modules with API keys will go here
 		
 		File configFile = new File(configFilePath);
