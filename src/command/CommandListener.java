@@ -13,6 +13,7 @@ public class CommandListener extends ListenerAdapter {
 		
 		Message message = event.getMessage();
 		String contents = message.getContent();
+		String fact;
 		
 		//This line is important. This sets the prefix which the system responds to.
 		if (!contents.startsWith("!")) {
@@ -21,8 +22,14 @@ public class CommandListener extends ListenerAdapter {
 		}
 		
 		
-		contents = contents.substring(1,  contents.length());
-		this.factory = FactoryMaker.getFactory(contents);
+		//contents = contents.substring(1,  contents.length());
+		
+		//	
+		//	This removes the ! then gets the first word from the string
+		//
+		fact = contents.replaceFirst("!", "");
+		fact = fact.split("\\s+")[0];
+		this.factory = FactoryMaker.getFactory(fact);
 		
 		//
 		//	here we need to set the contents to actually hold what the rest of the contents are so there
@@ -35,7 +42,10 @@ public class CommandListener extends ListenerAdapter {
 			//	This passes the content of the command to the factory
 			//	so that it can create the correct command dynamically. 
 			//
-			CommandINF command = this.factory.getCommand(contents);
+			//	we get the second substring after we split where there are spaces for the command	
+			//
+			String cmd = contents.split("\\s+")[1];
+			CommandINF command = this.factory.getCommand(cmd);
 			command.execute(event);
 			
 			//Handle if the command was not found
