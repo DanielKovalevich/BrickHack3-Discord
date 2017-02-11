@@ -6,6 +6,6 @@ public interface CommandINF {
 	
 	public void doCommand(MessageReceivedEvent event);
 	
-	void execute(MessageReceivedEvent event);
+	public void execute(MessageReceivedEvent event);
 
 }

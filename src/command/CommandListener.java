@@ -7,12 +7,13 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class CommandListener extends ListenerAdapter {
 
-	private CommandFactory factory = null;
+	private AbstractFactory factory = null;
 	
 	@Override public void onMessageReceived(MessageReceivedEvent event) {
 		
 		Message message = event.getMessage();
 		String contents = message.getContent();
+		String fact;
 		
 		//This line is important. This sets the prefix which the system responds to.
 		if (!contents.startsWith("!")) {
@@ -20,17 +21,31 @@ public class CommandListener extends ListenerAdapter {
 			return;
 		}
 		
-		this.factory = CommandFactory.getInstance();
-		contents = contents.substring(1,  contents.length());
+		
+		//contents = contents.substring(1,  contents.length());
+		
+		//	
+		//	This removes the ! then gets the first word from the string
+		//
+		fact = contents.replaceFirst("!", "");
+		fact = fact.split("\\s+")[0];
+		this.factory = FactoryMaker.getFactory(fact);
+		
+		//
+		//	here we need to set the contents to actually hold what the rest of the contents are so there
+		//	is going to be some code here.
+		//
 		
 		try {
 			
 			//
 			//	This passes the content of the command to the factory
 			//	so that it can create the correct command dynamically. 
-			//	
-			this.factory.createNewCommand(contents);
-			CommandINF command = this.factory.getCurrentCommand();
+			//
+			//	we get the second substring after we split where there are spaces for the command	
+			//
+			String cmd = contents.split("\\s+")[1];
+			CommandINF command = this.factory.getCommand(cmd);
 			command.execute(event);
 			
 			//Handle if the command was not found
