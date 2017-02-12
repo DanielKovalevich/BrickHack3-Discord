@@ -5,7 +5,17 @@ Designed for Discord
 **Discord**
 Discord is a user friendly voice and text chat designed specifically for gamers. It provides free secure service and works on mobile, desktop, and in web.
 
- **Omniclad**
+**Brand & Identity**
+As an up and coming company, we are a brand for social responsibility in a day and age where harassment and bullying have a greater impact on those on the receiving end. We advocate for advancement and education in STEM fields and invest into research and development to further facilitate growth in our generation, and in generations to come.
+
+**User Experience**
+Integrated into Discord to break down language barriers and to clean up chat without compromising overall user experience. We are aiming for minimization to elimination of harassment in game chats to bring about better sportsmanlike conduct and a safe environment in which anyone can feel welcomed.
+
+**Product Goals**
+Create a clean and safe communication environment that breaks language barriers allowing gamers all over the world to seamlessly connect with one another, enhancing the overall gaming experience. This is something that is designed to work in the background of any Discord chat, meaning the app will work without being noticed by most users. Just like a light switch, *OmniClad’s* various functionalities can be turned on/off with the push of a button.
+
+**Design**
+*Omniclad* uses Microsoft Cognitive Services API to power the functionalities it was created for.
  *Omniclad* is a bot designed with user in mind. Gamers are diverse and many, located all over the world. With that in mind, *Omniclad* creators programmed it with multiple functionalities.
 
 **Microsoft Cognitive Services**
