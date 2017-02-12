@@ -38,8 +38,8 @@ public class TextModerationCore extends ListenerAdapter {
 			
 		if(!getServerElegibility(element)) {
 				
-			event.getChannel().deleteMessageById(event.getMessage().getId());
-			event.getChannel().sendMessage("Deleted an some text for not following the content filter properly").queue();
+			event.getMessage().editMessage("Message removed for containing profanity").queue();
+			//event.getChannel().sendMessage("Deleted an some text for not following the content filter properly").queue();
 		}
 	}
 		
