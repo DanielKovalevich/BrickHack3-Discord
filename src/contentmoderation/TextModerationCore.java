@@ -27,10 +27,6 @@ public class TextModerationCore extends ListenerAdapter {
 	@Override public void onMessageReceived(MessageReceivedEvent event) {
 		System.out.println("[Notice] Text Detected\n");
 		
-		//If the bot said this, don't process it
-		if(event.getAuthor().isBot())
-			return;
-		
 		this.api = new ApiInterface();
 		
 		//String element = getApiResponse(getTextJsonString(event.getMessage().toString()));
