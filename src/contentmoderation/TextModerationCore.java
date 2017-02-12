@@ -10,6 +10,9 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import core.ApiInterface;
 import core.Configurations;
@@ -26,78 +29,94 @@ public class TextModerationCore extends ListenerAdapter {
 		
 		this.api = new ApiInterface();
 		
-		TextClassificationElement element = getApiResponse(getTextJsonString(event.getMessage().toString()));
+		//String element = getApiResponse(getTextJsonString(event.getMessage().toString()));
+		String element = getApiResponse(event.getMessage().toString());
 			
 		if(!getServerElegibility(element)) {
 				
 			event.getChannel().deleteMessageById(event.getMessage().getId());
-			event.getChannel().sendMessage("Deleted an image for not following the content filter properly").queue();
+			event.getChannel().sendMessage("Deleted an some text for not following the content filter properly").queue();
 		}
 	}
-	
-	private String getTextJsonString(String text) {
 		
-		TextReceivedElement element = new TextReceivedElement(text);
-		
-		return api.putObjectIntoJson(element);
-		
-	}
-	
 	//If true, it's elegable. Otherwise it is not.
-	private boolean getServerElegibility(TextClassificationElement retrievedContentValues) {
+	private boolean getServerElegibility(String jsonObject) {
 		
 		Configurations config = new Configurations();
 		
-		boolean adultAllowed = Boolean.valueOf(config.getPropertyValue("Allow_Adult"));
-		boolean racyAllowed = Boolean.valueOf(config.getPropertyValue("Allow_Racy"));
+		boolean badLanguageAllowed = Boolean.valueOf(config.getPropertyValue("Allow_bad_language"));
 		
+		boolean languageDetected = parseForLanguage(jsonObject);
 		
-		if(adultAllowed && racyAllowed)
+		if(badLanguageAllowed)
 			return true;
 		
-		else if(!adultAllowed && retrievedContentValues.isAdult())
+		else if(languageDetected && !badLanguageAllowed)
 			return false;
 		
-		else if(!racyAllowed && retrievedContentValues.isRacy())
-			return false;
-		
-		else
-			return true;
+		return true;
 		
 		
 	}
-	private TextClassificationElement getApiResponse(String jsonBody) {
+	private String getApiResponse(String jsonBody) {
 		
 		Configurations config = new Configurations();
 		
-		TextClassificationElement retrievedElement = null;
+		String retrievedElement = null;
 		
-		String requestUrl = "https://westus.api.cognitive.microsoft.com/contentmoderator/moderate/v1.0/ProcessText/DetectLanguage";
+		String requestUrl = "https://westus.api.cognitive.microsoft.com/contentmoderator/moderate/v1.0/ProcessText/Screen/?language=eng";
 		try (CloseableHttpClient httpClient = HttpClientBuilder.create().build()) {
 			
 			HttpPost request = new HttpPost(requestUrl);
 			StringEntity params = new StringEntity(jsonBody);
-			request.addHeader("content-type", "application/json");
-			request.addHeader("Ocp-Apim-Subscription-Key", config.getPropertyValue("Moderation_API_key"));
+			request.addHeader("content-type", "text/plain");
+			request.addHeader("Ocp-Apim-Subscription-Key", config.getPropertyValue("Text_Moderation_API_key"));
 			request.setEntity(params);
-			
-			//System.out.print(request.getAllHeaders());
-			
+						
 			HttpResponse result = httpClient.execute(request);
 			String json = EntityUtils.toString(result.getEntity(), "UTF-8");
-			
-		//	System.out.print(json);
-			
+						
 			//Now that the server response is saved in "response"..
-			Gson gson = new Gson();
-			
-			retrievedElement = gson.fromJson(json, TextClassificationElement.class);
+			retrievedElement = json;
+		
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		return retrievedElement;
+		
+	}
+	
+	//Returns true if elegable to be displayed
+	private boolean parseForLanguage(String json) {
+		
+		JsonParser parser = new JsonParser();
+		JsonObject object = parser.parse(json).getAsJsonObject();
+		
+		
+		try {
+		JsonArray potentalBadTerms = object.get("Terms").getAsJsonArray();
+
+		if(potentalBadTerms == null) {
+			
+			System.out.println("[Debug] Bad terms found! User is bad!");
+			return false;
+		}
+		
+		else {
+			
+			return true;
+		}
+			
+		} catch (IllegalStateException e) {
+			
+			return true;
+		}
+		
+		
+		
+		
 		
 	}
 }

@@ -1,29 +1,58 @@
 package Translation;
 
+
+import com.memetix.mst.language.Language;
+import com.memetix.mst.translate.Translate;
+
 import command.CommandABS;
 import core.Configurations;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public abstract class TranslationCommand extends CommandABS {
-	
-	Configurations configManager = new Configurations();
+public class TranslationCommand extends CommandABS {
 	
 	protected String to;
-	protected String from;
 	protected String text = "";
+	String token;
 	
-	protected String token = configManager.getPropertyValue("League_of_Legends_API_Key");
+	private Configurations configManager = null;
 	
-	public TranslationCommand(String t, String f, String txt){
+	
+	public TranslationCommand(String t, String txt){
+		
+		this.configManager = new Configurations();
 		to = t;
-		from = f;
 		text = txt;
+		
+		token = configManager.getPropertyValue("Translator_Key");
+		
 	}
 	
-	public abstract void translate();
+	public void translate(){
+		
+		Translate.setClientId(configManager.getPropertyValue("Azure_Translate_ID"));
+		Translate.setClientSecret(configManager.getPropertyValue("Azure_Translate_Secret"));
+		
+		String translatedText;
+		try {
+			translatedText = Translate.execute(this.text, Language.ENGLISH);
+			System.out.println(translatedText);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 	
 	public void doCommand(MessageReceivedEvent event){
 		
+
+
+		this.translate();
+		
 	}
+	
+	
+		
+	
 
 }

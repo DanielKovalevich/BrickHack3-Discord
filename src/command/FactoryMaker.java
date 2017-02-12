@@ -18,10 +18,12 @@ public class FactoryMaker {
 			case "translate":{
 				
 				f = new TranslationFactory();
+				break;
 			}
 			
 			default:
 				f = null;
+				break;
 			
 		}
 		

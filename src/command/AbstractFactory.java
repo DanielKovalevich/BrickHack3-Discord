@@ -1,6 +1,6 @@
 package command;
 
-import Translation.TranslationCommand;
+
 import exceptions.CommandNotFoundException;
 
 public abstract class AbstractFactory {
