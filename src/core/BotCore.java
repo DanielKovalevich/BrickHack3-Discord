@@ -9,6 +9,7 @@ import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
+import users.UserCore;
 
 public class BotCore {
 	
@@ -56,7 +57,8 @@ public class BotCore {
 		
 		this.jda.addEventListener(new CommandListener());
 		this.jda.addEventListener(new ContentModerationCore());
-		//this.jda.addEventListener(new TextModerationCore());
+	//	this.jda.addEventListener(new TextModerationCore());
+		this.jda.addEventListener(new UserCore());
 	}
 	
 	

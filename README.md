@@ -10,6 +10,8 @@ Discord is a user friendly voice and text chat designed specifically for gamers.
 
 **Microsoft Cognitive Services**
 
+**Machine Learning**
+The content moderator uses the Microsoft Azure services provided to function with machine learning. This gives the bot the ability to function like AI, doing things without being explicitly programmed to do so.
  
  **Translation Capabilities**
  Cue in language barriers. Language barriers make for a less pleasant gaming experience. Just imagine trying to play Counter Strike or other games requiring strategy and not being able to communicate with part of you team which speaks Russian/Spanish/Chinese.
