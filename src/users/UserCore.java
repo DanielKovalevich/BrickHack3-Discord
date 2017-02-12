@@ -20,6 +20,7 @@ public class UserCore extends ListenerAdapter {
 		
 		if(!hasInit)
 			scanGuildForUsers(event);
+		hasInit = true;
 		
 	}
 	

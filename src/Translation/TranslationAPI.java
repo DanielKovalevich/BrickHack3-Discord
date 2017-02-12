@@ -36,7 +36,7 @@ public class TranslationAPI {
 		    	retrievedElement = line;
 		    }
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("[Warning] Translation token bad!");
 		}
 		
 		return retrievedElement;

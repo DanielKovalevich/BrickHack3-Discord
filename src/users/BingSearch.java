@@ -58,7 +58,7 @@ public class BingSearch extends CommandABS {
 
 	            URI uri = builder.build();
 	            HttpPost request = new HttpPost(uri);
-	            request.setHeader("Ocp-Apim-Subscription-Key", "c8d14b6f7d9d4a4191d3b7d68e95cd3c");
+	            request.setHeader("Ocp-Apim-Subscription-Key", "d5c6704474064ea5be7eccbeda557e95");
 
 
 	            // Request body

@@ -31,7 +31,7 @@ public class BotCore {
 
 		
 			this.jda = new JDABuilder(AccountType.BOT)
-					.setToken("MjgwMDU0MzMyNDY2OTIxNDcy.C4D3Vg.dVQ02hg61QkX7tgLMX08ZGwA2W0")
+					.setToken(config.getPropertyValue("Discord_Bot_API_Key"))
 					.buildBlocking();
 		} catch (IllegalArgumentException | RateLimitedException e) {
 		
