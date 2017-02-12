@@ -25,7 +25,7 @@ public class CommandListener extends ListenerAdapter {
 		//	
 		//	This removes the ! then gets the first word from the string
 		//
-		fact = contents.substring(1,  contents.length());
+		fact = contents.substring(1);
 		fact = fact.split("\\s+")[0];
 		this.factory = FactoryMaker.getFactory(fact);
 		

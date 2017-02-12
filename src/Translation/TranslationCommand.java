@@ -28,7 +28,7 @@ public class TranslationCommand extends CommandABS {
 		
 	}
 	
-	public void translate() throws IOException{
+	public void translate(MessageReceivedEvent event) throws IOException{
 		String translatedText = null;
 		
 		TranslationAPI translate = new TranslationAPI(token, to, text);
@@ -37,7 +37,7 @@ public class TranslationCommand extends CommandABS {
 		translatedText = getTranslation(translatedText);
 		
 		try {
-			System.out.println(translatedText);
+			event.getChannel().sendMessage("`" + translatedText + "`").queue();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,7 +48,7 @@ public class TranslationCommand extends CommandABS {
 	public void doCommand(MessageReceivedEvent event){
 		
 		try {
-			this.translate();
+			this.translate(event);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
