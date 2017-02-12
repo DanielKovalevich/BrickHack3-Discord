@@ -1,6 +1,7 @@
 package command;
 
 import Translation.TranslationFactory;
+import users.UserFactory;
 
 public class FactoryMaker {
 	
@@ -18,6 +19,12 @@ public class FactoryMaker {
 			case "translate":{
 				
 				f = new TranslationFactory();
+				break;
+			}
+			
+			case "user":{
+				
+				f = new UserFactory();
 				break;
 			}
 			

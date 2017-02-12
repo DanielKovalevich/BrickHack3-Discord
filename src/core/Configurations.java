@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class Configurations {
 	private Properties configManager = null;
-	private String configFilePath = "C:\\Users\\dkova\\Desktop\\config.conf";
+	private String configFilePath = "~/home/config.conf";
 	
 	public Configurations() {
 		this.configManager = new Properties();
@@ -54,6 +54,7 @@ public class Configurations {
 		configManager.setProperty("Moderation_API_key", "Value needed");
 		configManager.setProperty("Allow_bad_language", "true");
 		configManager.setProperty("Translator_Token", "Value needed");
+		configManager.setProperty("Search_API", "Value needed");
 		// New modules with API keys will go here
 		
 		File configFile = new File(configFilePath);
