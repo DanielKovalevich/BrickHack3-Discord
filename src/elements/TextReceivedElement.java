@@ -1,7 +1,7 @@
 package elements;
 
 public class TextReceivedElement {
-	private String dataRepresentation = "text";
+	private String dataRepresentation = "text/plain";
 	private String text = null;
 	public TextReceivedElement(String value) {
 		setText(value);
