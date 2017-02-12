@@ -27,9 +27,7 @@ public class ContentModerationCore extends ListenerAdapter {
 	
 	@Override public void onMessageEmbed(MessageEmbedEvent event) {
 		
-		if(event.getPrivateChannel().getUser().isBot())
-			return;
-		
+	
 		this.api = new ApiInterface();
 		
 		//For each of the embeded elements, create a json object and filter content
@@ -44,7 +42,6 @@ public class ContentModerationCore extends ListenerAdapter {
 				if(!getServerElegibility(element)) {
 					
 					event.getChannel().deleteMessageById(event.getMessageId()).queue();
-					event.getChannel().sendMessage("Deleted an image for not following the content filter properly").queue();
 				}
 				
 			}
