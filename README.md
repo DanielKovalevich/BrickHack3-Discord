@@ -29,7 +29,7 @@ The content moderator uses the Microsoft Azure services provided to function wit
 You may try to communicate through chat because you don't speak those languages, but by the time you pull out google translate and figure out what was being communicated, you've been shot, the bomb was diffused, and your team lost.
 
 
->*Omniclad* is designed to integrate the translating straight into Discord, whether for use between gamers, or between users and tech support.
+>*Omniclad* is designed to integrate the translating straight into Discord, whether for use between gamers, or between users and tech support:
 
 ![Alt text](https://g.gravizo.com/g?
 @startuml;

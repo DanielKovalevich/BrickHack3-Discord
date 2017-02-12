@@ -105,7 +105,7 @@ public class ContentModerationCore extends ListenerAdapter {
 			HttpPost request = new HttpPost(requestUrl);
 			StringEntity params = new StringEntity(jsonBody);
 			request.addHeader("content-type", "application/json");
-			request.addHeader("Ocp-Apim-Subscription-Key", config.getPropertyValue("Moderation_API_key"));
+			request.addHeader("Ocp-Apim-Subscription-Key", "c0bcfd6451024febb144a272e183264d");
 			request.setEntity(params);
 			
 			//System.out.print(request.getAllHeaders());
