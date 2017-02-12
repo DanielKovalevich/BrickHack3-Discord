@@ -11,10 +11,16 @@ public class UserFactory extends AbstractFactory {
 		
 		CommandABS temp;
 		
-		switch(s.substring(6)) {
+		System.out.println(s.substring(6));
+		
+		switch(s.substring(6).split(" ")[0]) {
 		
 		case "ToggleAutocorrect":
 			temp = new ToggleAutocorrect();
+			break;
+			
+		case "query":
+			temp = new BingSearch();
 			break;
 			
 		default:

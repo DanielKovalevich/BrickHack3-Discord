@@ -43,4 +43,10 @@ public class BingSearch extends CommandABS {
 		
 		return hyperlink;
 	}
+
+	@Override
+	public void doCommand(MessageReceivedEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
 }

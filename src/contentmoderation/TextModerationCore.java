@@ -127,7 +127,7 @@ public class TextModerationCore extends ListenerAdapter {
 		Connection connection = mysql.getMysqlConnection();
 		
 		try {
-			String query = "UPDATE discordusers SET muted = muted+1 WHERE discordId = ?";
+			String query = "UPDATE discordusers SET strikes = strikes+1 WHERE discordId = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, event.getAuthor().getId());
 			
