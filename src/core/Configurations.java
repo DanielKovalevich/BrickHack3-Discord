@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class Configurations {
 	private Properties configManager = null;
-	private String configFilePath = "C:\\Users\\mason\\Desktop\\config.conf";
+	private String configFilePath = "C:\\Users\\conrad\\Desktop\\config.conf";
 	
 	public Configurations() {
 		this.configManager = new Properties();
@@ -53,6 +53,8 @@ public class Configurations {
 		configManager.setProperty("Allow_Racy", "true");
 		configManager.setProperty("Moderation_API_key", "Value needed");
 		configManager.setProperty("Allow_bad_language", "true");
+		configManager.setProperty("Azure_Translate_ID", "Value needed");
+		configManager.setProperty("Azure_Translate_Secret", "Value needed");
 		// New modules with API keys will go here
 		
 		File configFile = new File(configFilePath);
