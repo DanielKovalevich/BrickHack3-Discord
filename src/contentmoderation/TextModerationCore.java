@@ -98,10 +98,12 @@ public class TextModerationCore extends ListenerAdapter {
 		
 		JsonParser parser = new JsonParser();
 		JsonObject object = parser.parse(json).getAsJsonObject();
+		
+		JsonArray potentalBadTerms = null;
 
 		
 		try {
-		JsonArray potentalBadTerms = object.get("Terms").getAsJsonArray();
+		potentalBadTerms = object.get("Terms").getAsJsonArray();
 
 		if(potentalBadTerms == null) {
 			

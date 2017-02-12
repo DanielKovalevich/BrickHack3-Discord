@@ -15,7 +15,7 @@ public class MysqlCore {
 		//Attempt to load the MYSQL driver
 		try {
 			
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			
 		} catch (ClassNotFoundException e) {
 			
@@ -29,11 +29,9 @@ public class MysqlCore {
 		//Attempt to connect to the database
 		try {
 			
-			Configurations configManager = new Configurations();
-			
 			this.connection = DriverManager
 					.getConnection("jdbc:sqlserver://carldiscordbot.database.windows.net:1433;"
-							+ "database=discordbot;user=user@carldiscordbot;password=" + configManager.getPropertyValue("MYSQL_Password") 
+							+ "database=discordbot;user=user@carldiscordbot;password=Carldiscordbot!"
 							+ ";encrypt=true;"
 							+ "trustServerCertificate=false;"
 							+ "hostNameInCertificate=*.database.windows.net;loginTimeout=30;");

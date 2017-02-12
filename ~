@@ -1,0 +1,10 @@
+#Bot Settings
+#Sun Feb 12 06:27:36 EST 2017
+Search_API=Value needed
+Moderation_API_key=Value needed
+Translator_Token=Value needed
+Allow_Racy=true
+Translator_Key=Value needed
+Allow_bad_language=true
+Discord_Bot_API_Key=Value needed
+Allow_Adult=true
