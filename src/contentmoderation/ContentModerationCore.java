@@ -1,7 +1,6 @@
 package contentmoderation;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 
 import org.apache.http.HttpResponse;
@@ -27,6 +26,8 @@ public class ContentModerationCore extends ListenerAdapter {
 	
 	@Override public void onMessageEmbed(MessageEmbedEvent event) {
 		
+		System.out.println("[Notice] Embed Detected\n");
+		
 		this.api = new ApiInterface();
 		
 		//For each of the embeded elements, create a json object and filter content
@@ -41,7 +42,7 @@ public class ContentModerationCore extends ListenerAdapter {
 				if(!getServerElegibility(element)) {
 					
 					event.getChannel().deleteMessageById(event.getMessageId()).queue();
-					event.getChannel().sendMessage("Deleted an image for now following the content filter properly").queue();
+					event.getChannel().sendMessage("Deleted an image for not following the content filter properly").queue();
 				}
 				
 			}
@@ -54,7 +55,7 @@ public class ContentModerationCore extends ListenerAdapter {
 			if(!getServerElegibility(element)) {
 				
 				event.getChannel().deleteMessageById(event.getMessageId()).queue();
-				event.getChannel().sendMessage("Deleted an image for now following the content filter properly").queue();
+				event.getChannel().sendMessage("Deleted an image for not following the content filter properly").queue();
 			}
 		}
 		
@@ -76,6 +77,7 @@ public class ContentModerationCore extends ListenerAdapter {
 		boolean adultAllowed = Boolean.valueOf(config.getPropertyValue("Allow_Adult"));
 		boolean racyAllowed = Boolean.valueOf(config.getPropertyValue("Allow_Racy"));
 		
+		
 		if(adultAllowed && racyAllowed)
 			return true;
 		
@@ -94,6 +96,8 @@ public class ContentModerationCore extends ListenerAdapter {
 	
 	private ImageClassificationElement getApiResponse(String jsonBody) {
 		
+		Configurations config = new Configurations();
+		
 		ImageClassificationElement retrievedElement = null;
 		
 		String requestUrl = "https://westus.api.cognitive.microsoft.com/contentmoderator/moderate/v1.0/ProcessImage/Evaluate";
@@ -102,9 +106,15 @@ public class ContentModerationCore extends ListenerAdapter {
 			HttpPost request = new HttpPost(requestUrl);
 			StringEntity params = new StringEntity(jsonBody);
 			request.addHeader("content-type", "application/json");
+			request.addHeader("Ocp-Apim-Subscription-Key", config.getPropertyValue("Moderation_API_key"));
 			request.setEntity(params);
+			
+			//System.out.print(request.getAllHeaders());
+			
 			HttpResponse result = httpClient.execute(request);
 			String json = EntityUtils.toString(result.getEntity(), "UTF-8");
+			
+		//	System.out.print(json);
 			
 			//Now that the server response is saved in "response"..
 			Gson gson = new Gson();
