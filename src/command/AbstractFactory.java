@@ -1,8 +1,6 @@
 package command;
 
-import java.util.ArrayList;
 
-import Translation.TranslationCommand;
 import exceptions.CommandNotFoundException;
 
 public abstract class AbstractFactory {

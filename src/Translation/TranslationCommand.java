@@ -25,8 +25,6 @@ public class TranslationCommand extends CommandABS {
 		Configurations configManager = new Configurations();
 		token = configManager.getPropertyValue("Translator_Key");
 		
-		
-		
 		this.translate();
 		
 	}

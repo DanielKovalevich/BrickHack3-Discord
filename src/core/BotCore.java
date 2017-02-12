@@ -2,6 +2,7 @@ package core;
 
 import javax.security.auth.login.LoginException;
 
+import command.CommandListener;
 import contentmoderation.ContentModerationCore;
 import contentmoderation.TextModerationCore;
 import net.dv8tion.jda.core.AccountType;
@@ -53,7 +54,7 @@ public class BotCore {
 	
 	private void attachCallbacks() {
 		
-		//this.jda.addEventListener(new CommandListener());
+		this.jda.addEventListener(new CommandListener());
 		this.jda.addEventListener(new ContentModerationCore());
 		this.jda.addEventListener(new TextModerationCore());
 	}

@@ -13,6 +13,7 @@ public class CommandListener extends ListenerAdapter {
 		
 		Message message = event.getMessage();
 		String contents = message.getContent();
+		
 		String fact;
 		
 		//This line is important. This sets the prefix which the system responds to.
@@ -39,15 +40,13 @@ public class CommandListener extends ListenerAdapter {
 			//	This passes the content of the command to the factory
 			//	so that it can create the correct command dynamically. 
 			//
-			//	we get the second substring after we split where there are spaces for the command	
-			//
 			CommandABS command = this.factory.getCommand(contents);
 			command.execute(event);
 			
 			//Handle if the command was not found
 		} catch (CommandNotFoundException ex) {
 			
-			System.out.println(String.format("[Command] User %s entered invalid command %s", message.getAuthor().getName(), contents));
+			System.out.println(String.format("[Command] User %s entered invalid command %s", message.getAuthor().getName(), fact));
 		}
 	}
 }
