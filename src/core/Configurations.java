@@ -10,6 +10,7 @@ import java.util.Properties;
 public class Configurations {
 	private Properties configManager = null;
 	private String configFilePath = "C:\\Users\\Conrad\\Desktop\\config.conf";
+	
 	public Configurations() {
 		this.configManager = new Properties();
 		File configFile = new File(configFilePath);

@@ -9,9 +9,11 @@ public class TranslationFactory extends AbstractFactory {
 	public CommandABS getCommand(String s) {
 		TranslationCommand cmd = null;
 		
-		//
-		//	We will build a new command here based on what string we have here.
-		//
+		
+		
+		switch(){
+		
+		}
 		
 		return cmd;
 	}
