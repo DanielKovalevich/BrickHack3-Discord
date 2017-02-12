@@ -18,6 +18,7 @@ import elements.ImageClassificationElement;
 import elements.ImageEmbedElement;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.events.message.MessageEmbedEvent;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class ContentModerationCore extends ListenerAdapter {
@@ -26,7 +27,8 @@ public class ContentModerationCore extends ListenerAdapter {
 	
 	@Override public void onMessageEmbed(MessageEmbedEvent event) {
 		
-		System.out.println("[Notice] Embed Detected\n");
+		if(event.getPrivateChannel().getUser().isBot())
+			return;
 		
 		this.api = new ApiInterface();
 		
