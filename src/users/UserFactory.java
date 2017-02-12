@@ -9,13 +9,21 @@ public class UserFactory extends AbstractFactory {
 	@Override
 	public CommandABS getCommand(String s) throws CommandNotFoundException {
 		
-		switch(s) {
+		CommandABS temp;
+		
+		switch(s.substring(6)) {
 		
 		case "ToggleAutocorrect":
-			return new ToggleAutocorrect();
+			temp = new ToggleAutocorrect();
+			break;
+			
+		default:
+			temp = null;
+			break;
 		}
+					
 		
-		return null;
+		return temp; 
 	}
 	
 	

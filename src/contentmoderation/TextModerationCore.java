@@ -18,6 +18,7 @@ import core.ApiInterface;
 import core.Configurations;
 import elements.TextClassificationElement;
 import elements.TextReceivedElement;
+import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
@@ -25,7 +26,8 @@ public class TextModerationCore extends ListenerAdapter {
 	private ApiInterface api = null;
 	
 	@Override public void onMessageReceived(MessageReceivedEvent event) {
-		System.out.println("[Notice] Text Detected\n");
+		
+		Message scannedMethod = event.getMessage();
 		
 		this.api = new ApiInterface();
 		
@@ -34,7 +36,7 @@ public class TextModerationCore extends ListenerAdapter {
 			
 		if(!getServerElegibility(element)) {
 				
-			event.getMessage().editMessage("Message removed for containing profanity").queue();
+			scannedMethod.deleteMessage().queue();
 			//event.getChannel().sendMessage("Deleted an some text for not following the content filter properly").queue();
 		}
 	}
@@ -50,9 +52,11 @@ public class TextModerationCore extends ListenerAdapter {
 		
 		if(badLanguageAllowed)
 			return true;
-		
+			
 		else if(languageDetected && !badLanguageAllowed)
 			return false;
+		
+		System.out.println("FUCKING" + String.valueOf(languageDetected));
 		
 		return true;
 		
@@ -93,14 +97,13 @@ public class TextModerationCore extends ListenerAdapter {
 		
 		JsonParser parser = new JsonParser();
 		JsonObject object = parser.parse(json).getAsJsonObject();
-		
+
 		
 		try {
 		JsonArray potentalBadTerms = object.get("Terms").getAsJsonArray();
 
 		if(potentalBadTerms == null) {
 			
-			System.out.println("[Debug] Bad terms found! User is bad!");
 			return false;
 		}
 		
@@ -111,11 +114,8 @@ public class TextModerationCore extends ListenerAdapter {
 			
 		} catch (IllegalStateException e) {
 			
-			return true;
+			return false;
 		}
-		
-		
-		
 		
 		
 	}

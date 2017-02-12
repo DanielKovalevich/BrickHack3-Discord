@@ -19,12 +19,16 @@ public class ToggleAutocorrect extends CommandABS {
 		
 		try {
 			//Get the users current spellcheck setting
-			String currentSettingQuery = "SELECT spellcheckEnabled WHERE discordId = ?";
+			String currentSettingQuery = "SELECT spellcheckEnabled FROM discordusers WHERE discordId = ?";
 			PreparedStatement currentSettingStatement = connection.prepareStatement(currentSettingQuery);
 			currentSettingStatement.setString(1, event.getAuthor().getId());
 			ResultSet currentSettingResult = currentSettingStatement.executeQuery();
 			
-			int enabledStatus = currentSettingResult.getInt(1);
+			int enabledStatus = 0;
+			
+			while(currentSettingResult.next())
+				enabledStatus = currentSettingResult.getInt(1);
+			
 			int targetStatus = 0;
 			
 			//If the enabled status is enabled, disable it. Otherwise enable it
@@ -42,6 +46,8 @@ public class ToggleAutocorrect extends CommandABS {
 			
 			statement.setInt(1, targetStatus);
 			statement.setString(2, event.getAuthor().getId());
+			
+			statement.execute();
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
