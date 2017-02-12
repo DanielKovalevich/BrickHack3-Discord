@@ -4,25 +4,30 @@ import command.CommandABS;
 import core.Configurations;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public abstract class TranslationCommand extends CommandABS {
-	
-	Configurations configManager = new Configurations();
+public class TranslationCommand extends CommandABS {
 	
 	protected String to;
-	protected String from;
 	protected String text = "";
+	String token;
 	
-	protected String token = configManager.getPropertyValue("League_of_Legends_API_Key");
 	
-	public TranslationCommand(String t, String f, String txt){
+	public TranslationCommand(String t, String txt){
 		to = t;
-		from = f;
 		text = txt;
 	}
 	
-	public abstract void translate();
+	public void translate(){
+		
+	}
 	
 	public void doCommand(MessageReceivedEvent event){
+		
+		Configurations configManager = new Configurations();
+		token = configManager.getPropertyValue("Translator_Key");
+		
+		
+		
+		this.translate();
 		
 	}
 
