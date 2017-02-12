@@ -1,8 +1,9 @@
 package Translation;
 
-
-import com.memetix.mst.language.Language;
-import com.memetix.mst.translate.Translate;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 
 import command.CommandABS;
 import core.Configurations;
@@ -23,18 +24,19 @@ public class TranslationCommand extends CommandABS {
 		to = t;
 		text = txt;
 		
-		token = configManager.getPropertyValue("Translator_Key");
+		token = configManager.getPropertyValue("Translator_Token");
 		
 	}
 	
-	public void translate(){
+	public void translate() throws IOException{
+		String translatedText = null;
 		
-		Translate.setClientId(configManager.getPropertyValue("Azure_Translate_ID"));
-		Translate.setClientSecret(configManager.getPropertyValue("Azure_Translate_Secret"));
+		TranslationAPI translate = new TranslationAPI(token, to, text);
+		translatedText = translate.getApiCall();
 		
-		String translatedText;
+		translatedText = getTranslation(translatedText);
+		
 		try {
-			translatedText = Translate.execute(this.text, Language.ENGLISH);
 			System.out.println(translatedText);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -45,14 +47,23 @@ public class TranslationCommand extends CommandABS {
 	
 	public void doCommand(MessageReceivedEvent event){
 		
-
-
-		this.translate();
+		try {
+			this.translate();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
-	
+	private String getTranslation(String input) {
+		String translation = null;
+		int beginning = input.indexOf('>');
+		int end = input.indexOf('<', beginning);
 		
-	
-
+		
+		translation = input.substring(beginning + 1, end);
+		return translation;
+		
+	}
 }
