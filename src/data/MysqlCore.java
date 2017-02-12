@@ -32,10 +32,11 @@ public class MysqlCore {
 			Configurations configManager = new Configurations();
 			
 			this.connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/" 
-						+ configManager.getPropertyValue("MYSQL_Database_Name")
-						, configManager.getPropertyValue("MYSQL_Username")
-						, configManager.getPropertyValue("MYSQL_Password"));
+					.getConnection("jdbc:sqlserver://carldiscordbot.database.windows.net:1433;"
+							+ "database=discordbot;user=user@carldiscordbot;password=" + configManager.getPropertyValue("MYSQL_Password") 
+							+ ";encrypt=true;"
+							+ "trustServerCertificate=false;"
+							+ "hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
 			
 			//Create all of the SQL tables which do not exist already
 			MysqlCreateTables tableEngine = new MysqlCreateTables(connection);
