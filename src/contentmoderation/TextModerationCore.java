@@ -75,7 +75,7 @@ public class TextModerationCore extends ListenerAdapter {
 			HttpPost request = new HttpPost(requestUrl);
 			StringEntity params = new StringEntity(jsonBody);
 			request.addHeader("content-type", "text/plain");
-			request.addHeader("Ocp-Apim-Subscription-Key", config.getPropertyValue("Text_Moderation_API_key"));
+			request.addHeader("Ocp-Apim-Subscription-Key", "c0bcfd6451024febb144a272e183264d");
 			request.setEntity(params);
 						
 			HttpResponse result = httpClient.execute(request);

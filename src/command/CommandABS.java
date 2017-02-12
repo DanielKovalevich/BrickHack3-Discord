@@ -16,4 +16,9 @@ public abstract class CommandABS {
 		this.doCommand(event);
 	}
 
+	public void onMessageReceived(MessageReceivedEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
