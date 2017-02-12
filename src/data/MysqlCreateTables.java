@@ -59,6 +59,7 @@ public class MysqlCreateTables {
 		
 		for(Entry<String, Boolean> tableElement : requiredTables.entrySet()) {
 			
+			
 			if(tableElement.getValue().booleanValue() == true)
 				break;
 			
@@ -66,7 +67,15 @@ public class MysqlCreateTables {
 			
 			case "UserList":
 				String tableQuery = 
-				"";
+				"CREATE TABLE discordusers ("
+				+ "`id` INT NOT NULL AUTO_INCREMENT,"
+				+ "`discordName` VARCHAR(45) NOT NULL,"
+				+ "`discordId` VARCHAR(45) NOT NULL,"
+				+ "`spellcheckEnabled` TINYINT(1) NOT NULL DEFAULT 0,"
+				+ "PRIMARY KEY (`id`));";
+				createTable(statement, tableQuery);
+				continue;
+
 			}
 		}
 		
